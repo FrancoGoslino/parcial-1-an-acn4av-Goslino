@@ -39,9 +39,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
 
-
-//        TextView welcome_message = findViewById(R.id.button_login);
-//        welcome_message.setText("New message");
-
     }
 }

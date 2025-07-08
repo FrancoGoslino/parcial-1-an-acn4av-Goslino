@@ -3,10 +3,22 @@ package com.example.testapplication;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.example.testapplication.model.TaskAdapter;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.example.testapplication.model.Task;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +26,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class FirstFragment extends Fragment {
+
+    private List<Task> taskList;
+    private TaskAdapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,6 +41,8 @@ public class FirstFragment extends Fragment {
 
     public FirstFragment() {
         // Required empty public constructor
+
+
     }
 
     /**
@@ -55,11 +72,34 @@ public class FirstFragment extends Fragment {
         }
 
     }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_first, container, false);
+    }
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // ✅ Usar las variables ya definidas arriba:
+        taskList = new ArrayList<>();
+        adapter = new TaskAdapter(taskList);
+
+        // 2. Configurar RecyclerView
+        RecyclerView recyclerView = view.findViewById(R.id.taskRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
+
+        // 3. Cargar tarea de prueba
+        taskList.add(new Task("Tarea de prueba", "Esto es solo un ejemplo", new Date()));
+        adapter.notifyItemInserted(taskList.size() - 1);
+
+        // 4. Configurar botón "Agregar tarea"
+        Button addTaskButton = view.findViewById(R.id.addTaskButton);
+        addTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acá va el DatePicker y el input de tarea
+            }
+        });
     }
 }
