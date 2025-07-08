@@ -82,35 +82,34 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // ✅ Usar las variables ya definidas arriba:
         taskList = new ArrayList<>();
         adapter = new TaskAdapter(taskList);
 
-        // 2. Configurar RecyclerView
+
         RecyclerView recyclerView = view.findViewById(R.id.taskRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
-        // 3. Cargar tarea de prueba
+        //  tarea de prueba
         taskList.add(new Task("Tarea de prueba", "Esto es solo un ejemplo", new Date()));
         adapter.notifyItemInserted(taskList.size() - 1);
 
 
-        // 4. Configurar botón "Agregar tarea"
-        Button addTaskButton = view.findViewById(R.id.addTaskButton);
-        addTaskButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Acá va el DatePicker y el input de tarea
-            }
+        // Tomar resultado de AddTaskFragment
+        getParentFragmentManager().setFragmentResultListener("nuevaTarea", this, (requestKey, bundle) -> {
+            String titulo = bundle.getString("titulo");
+            String descripcion = bundle.getString("descripcion");
+            long fechaMillis = bundle.getLong("fechaMillis");
+
+            Date fecha = new Date(fechaMillis);
+
+            taskList.add(new Task(titulo, descripcion, fecha));
+            adapter.notifyItemInserted(taskList.size() - 1);
         });
 
-
-
-
+        // Botón para agregar tarea
+        Button addTaskButton = view.findViewById(R.id.addTaskButton);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();

@@ -99,4 +99,13 @@
     <string name="action_settings">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fecha">Fecha</string>
+    <string name="descripci_n">Descripción</string>
+    <string name="t_tulo">Título</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook">Facebook</string>
+    <string name="logo_de_la_app">Logo de la app</string>
+    <string name="t_tulo_de_la_tarea">Título de la tarea</string>
+    <string name="seleccionar_fecha_l_mite">Seleccionar fecha límite</string>
+    <string name="descripcion">Descripción</string>
 </resources>

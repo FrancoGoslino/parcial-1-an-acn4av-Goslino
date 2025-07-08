@@ -8,20 +8,19 @@
         android:id="@+id/inputTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Título de la tarea" />
+        android:hint="@string/t_tulo_de_la_tarea" />
 
     <EditText
         android:id="@+id/inputDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descripción" />
+        android:hint="@string/descripcion" />
 
     <Button
         android:id="@+id/selectFechaButton"
-        android:onClick="onClick_seleccionarFecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Seleccionar fecha límite"
+        android:text="@string/seleccionar_fecha_l_mite"
         android:backgroundTint="@color/verde_app"
         />
 
@@ -37,7 +36,6 @@
 
     <Button
         android:id="@+id/guardarTareaButton"
-        android:onClick="onClick_guardarTarea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Guardar tarea"

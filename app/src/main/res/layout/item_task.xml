@@ -15,7 +15,7 @@
             android:id="@+id/tituloTarea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Título"
+            android:text="@string/t_tulo"
             android:textColor="@color/TextCardTask"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -24,7 +24,7 @@
             android:id="@+id/descripcionTarea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Descripción"
+            android:text="@string/descripci_n"
             android:textColor="@color/TextCardTask"
             android:textSize="18sp" />
 
@@ -32,7 +32,7 @@
             android:id="@+id/fechaTarea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fecha"
+            android:text="@string/fecha"
             android:textColor="@color/TextCardTask"
             android:textSize="14sp" />
 

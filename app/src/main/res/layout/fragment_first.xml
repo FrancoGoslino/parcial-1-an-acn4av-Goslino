@@ -14,7 +14,6 @@
         android:orientation="vertical"
         >
 
-        <!-- Lista de tareas -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/taskRecyclerView"
             android:layout_width="match_parent"
@@ -23,8 +22,6 @@
             android:padding="16dp"
             />
 
-
-        <!-- Botón para agregar tareas -->
         <Button
             android:padding="15dp"
             android:layout_marginStart="75dp"

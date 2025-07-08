@@ -12,6 +12,7 @@
         android:id="@+id/img_app"
         android:layout_width="163dp"
         android:layout_height="122dp"
+        android:contentDescription="@string/logo_de_la_app"
         app:layout_constraintBottom_toTopOf="@+id/editTextText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="Autofill,MissingConstraints"
         android:drawablePadding="20dp"
-        android:drawableLeft="@drawable/baseline_person_24"
+        android:drawableStart="@drawable/baseline_person_24"
         />
 
     <Button
@@ -60,6 +61,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
@@ -69,8 +71,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText"
         tools:ignore="VisualLintTextFieldSize"
-        android:drawableLeft="@drawable/baseline_info_24"
-        android:drawableRight="@drawable/baseline_remove_red_eye_24"
+        android:drawableStart="@drawable/baseline_info_24"
+        android:drawableEnd="@drawable/baseline_remove_red_eye_24"
         android:drawablePadding="20dp"
 
         />
@@ -128,6 +130,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
+            android:contentDescription="@string/twitter"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/logo_twitter" />
 
@@ -137,6 +140,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="0dp"
+            android:contentDescription="@string/facebook"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/logo_facebook" />
 
