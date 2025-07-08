@@ -26,10 +26,17 @@
 
         <!-- Botón para agregar tareas -->
         <Button
+            android:padding="15dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginEnd="75dp"
             android:id="@+id/addTaskButton"
+            android:backgroundTint="@color/cardTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Agregar tarea" />
+            android:text="Agregar tarea"
+            android:textSize="18dp"
+            android:textColor="@color/TextCardTask"
+            />
 
     </LinearLayout>
 </FrameLayout>

@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <EditText
+        android:id="@+id/inputTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Título de la tarea" />
+
+    <EditText
+        android:id="@+id/inputDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripción" />
+
+    <Button
+        android:id="@+id/selectFechaButton"
+        android:onClick="onClick_seleccionarFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar fecha límite"
+        android:backgroundTint="@color/verde_app"
+        />
+
+    <TextView
+        android:id="@+id/fechaSeleccionadaText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha no seleccionada"
+        android:textColor="#888888"
+        android:paddingTop="8dp"
+
+        />
+
+    <Button
+        android:id="@+id/guardarTareaButton"
+        android:onClick="onClick_guardarTarea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar tarea"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/verde_app"
+        />
+
+</LinearLayout>

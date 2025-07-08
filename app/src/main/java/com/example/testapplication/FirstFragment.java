@@ -3,6 +3,7 @@ package com.example.testapplication;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -76,6 +77,7 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_first, container, false);
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -93,6 +95,7 @@ public class FirstFragment extends Fragment {
         taskList.add(new Task("Tarea de prueba", "Esto es solo un ejemplo", new Date()));
         adapter.notifyItemInserted(taskList.size() - 1);
 
+
         // 4. Configurar botón "Agregar tarea"
         Button addTaskButton = view.findViewById(R.id.addTaskButton);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
@@ -101,5 +104,22 @@ public class FirstFragment extends Fragment {
                 // Acá va el DatePicker y el input de tarea
             }
         });
+
+
+
+
+        addTaskButton.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment, new AddTaskFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
+
+
 }
