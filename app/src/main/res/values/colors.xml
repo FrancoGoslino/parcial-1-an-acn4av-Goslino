@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="navbar">#2677D9</color>
+    <color name="verde_app">#00C182</color>
+    <color name="cardTask">#111f28</color>
+    <color name="TextCardTask">#e3cdb3</color>
+    <color name="prueba1">#757575</color>
+    <color name="prueba2">#FB0000</color>
+    <color name="prueba3">#00FFAE</color>
+    <color name="prueba4">#FF00E5</color>
+    <color name="prueba5">#40FF44</color>
+
+
 </resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_margin="10dp"
+    android:background="@color/cardTask"
+    android:gravity="center"
+    android:clipToPadding="false"
+
+    >
+
+        <TextView
+            android:id="@+id/tituloTarea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/t_tulo"
+            android:textColor="@color/TextCardTask"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/descripcionTarea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/descripci_n"
+            android:textColor="@color/TextCardTask"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/fechaTarea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fecha"
+            android:textColor="@color/TextCardTask"
+            android:textSize="14sp" />
+
+
+</LinearLayout>
