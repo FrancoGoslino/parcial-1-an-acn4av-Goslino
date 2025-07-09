@@ -93,6 +93,15 @@ public class FirstFragment extends Fragment {
         //  tarea de prueba
         taskList.add(new Task("Tarea de prueba", "Esto es solo un ejemplo", new Date()));
         adapter.notifyItemInserted(taskList.size() - 1);
+        taskList.add(new Task("Tarea de prueba 3", "Esto es solo un ejemplo", new Date()));
+        adapter.notifyItemInserted(taskList.size() - 1);
+        taskList.add(new Task("Tarea de prueba 3", "Esto es solo un ejemplo", new Date()));
+        adapter.notifyItemInserted(taskList.size() - 1);
+        taskList.add(new Task("Tarea de prueba 4", "Esto es solo un ejemplo", new Date()));
+        adapter.notifyItemInserted(taskList.size() - 1);
+        taskList.add(new Task("Tarea de prueba 5", "Esto es solo un ejemplo", new Date()));
+        adapter.notifyItemInserted(taskList.size() - 1);
+
 
 
         // Tomar resultado de AddTaskFragment
