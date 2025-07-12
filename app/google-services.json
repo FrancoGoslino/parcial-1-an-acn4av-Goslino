@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "74681432618",
+    "project_id": "fir-moviles-db99e",
+    "storage_bucket": "fir-moviles-db99e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74681432618:android:ed4c6c9155d12f2e66e153",
+        "android_client_info": {
+          "package_name": "com.example.testapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtgGXyk-c0BKRKkypk8IDGhGv9LujHxcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
