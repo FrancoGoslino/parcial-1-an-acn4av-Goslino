@@ -108,4 +108,5 @@
     <string name="t_tulo_de_la_tarea">Título de la tarea</string>
     <string name="seleccionar_fecha_l_mite">Seleccionar fecha límite</string>
     <string name="descripcion">Descripción</string>
+    <string name="volver_atr_s">Volver atrás</string>
 </resources>

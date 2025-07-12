@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void funcionDeshabilitada(View view){
-        Toast messageToast = Toast.makeText(this, "Funcion deshabilitada temporalmente", Toast.LENGTH_SHORT);
-        messageToast.show();
+    public void Onclick_Register(View view){
+        Intent intent = new Intent(this, RegisterUser.class);
+        startActivity(intent);
     }
 
     public void Onclick_Login(View view){

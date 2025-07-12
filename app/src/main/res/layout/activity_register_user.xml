@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
+    android:id="@+id/resgisterUser"
+    tools:context=".RegisterUser">
+
 
     <ImageView
         android:id="@+id/img_app"
@@ -19,39 +19,53 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_app" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="177dp"
+        android:text="¡REGISTRATE GRATIS YA!"
+        android:textColor="@color/verde_app"
+        android:textSize="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_app" />
+
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="346dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
+        android:drawableStart="@drawable/baseline_person_24"
+        android:drawablePadding="20dp"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="Autofill,MissingConstraints"
-        android:drawablePadding="20dp"
-        android:drawableStart="@drawable/baseline_person_24"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="Autofill,MissingConstraints" />
 
     <Button
         android:id="@+id/button2"
-        android:onClick="Onclick_Register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="#2677D9"
+        android:onClick="funcionDeshabilitada"
         android:text="@string/register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_login"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
         tools:ignore="VisualLintButtonSize" />
 
     <EditText
@@ -77,34 +91,20 @@
 
         />
 
-    <Button
-        android:id="@+id/button_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="#00C182"
-        android:onClick="Onclick_Login"
-        android:text="@string/log_in"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        tools:ignore="VisualLintButtonSize" />
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_atras"
+        android:onClick="OnClick_VolverAtras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/or_login_with"
+        android:text="@string/volver_atr_s"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        tools:ignore="OnClick" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -114,37 +114,8 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView_atras"/>
 
-        <ImageView
-            android:id="@+id/logo_google"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="@string/logo_de_inicio_sesion_google"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/logo_google" />
 
-        <ImageView
-            android:id="@+id/logo_x"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/twitter"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/logo_twitter" />
-
-        <ImageView
-            android:id="@+id/logfacebook"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="0dp"
-            android:contentDescription="@string/facebook"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/logo_facebook" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
