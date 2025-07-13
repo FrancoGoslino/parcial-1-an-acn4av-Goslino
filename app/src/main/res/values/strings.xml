@@ -109,4 +109,6 @@
     <string name="seleccionar_fecha_l_mite">Seleccionar fecha límite</string>
     <string name="descripcion">Descripción</string>
     <string name="volver_atr_s">Volver atrás</string>
+    <string name="registrate_gratis_ya">¡REGISTRATE GRATIS YA!</string>
+    <string name="user_name">User name</string>
 </resources>
