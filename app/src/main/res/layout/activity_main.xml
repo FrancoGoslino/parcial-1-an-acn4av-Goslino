@@ -13,14 +13,14 @@
         android:layout_width="163dp"
         android:layout_height="122dp"
         android:contentDescription="@string/logo_de_la_app"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEmailRegister"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmailLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_app" />
 
     <EditText
-        android:id="@+id/editTextEmailRegister"
+        android:id="@+id/editTextEmailLogin"
         android:layout_width="346dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -55,7 +55,7 @@
         tools:ignore="VisualLintButtonSize" />
 
     <EditText
-        android:id="@+id/editTextPasswordRegister"
+        android:id="@+id/editTextPasswordLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -69,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailLogin"
         tools:ignore="VisualLintTextFieldSize"
         android:drawableStart="@drawable/baseline_info_24"
         android:drawableEnd="@drawable/baseline_remove_red_eye_24"
@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLogin"
         tools:ignore="VisualLintButtonSize" />
 
     <TextView

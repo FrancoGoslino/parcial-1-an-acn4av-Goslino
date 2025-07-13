@@ -54,7 +54,6 @@ public class RegisterUser extends AppCompatActivity {
     }
     public void ResgitroApp(View view) {
 
-
         EditText emailEditText = findViewById(R.id.editTextEmailRegister);
         EditText passwordEditText = findViewById(R.id.editTextPasswordRegister);
 
