@@ -111,4 +111,12 @@
     <string name="volver_atr_s">Volver atrás</string>
     <string name="registrate_gratis_ya">¡REGISTRATE GRATIS YA!</string>
     <string name="user_name">User name</string>
+    <string name="guardar_tarea">Guardar tarea</string>
+    <string name="repetir_los_d_as">Repetir los días:</string>
+    <string name="crear_nueva_tarea">📝 Crear nueva tarea</string>
+    <string name="t_tulo_de_la_tareaº">Título de la tarea</string>
+    <string name="descripci_n1">Descripción</string>
+    <string name="seleccionar_fecha_l_mite1">📅 Seleccionar fecha límite</string>
+    <string name="fecha_no_seleccionada1">Fecha no seleccionada</string>
+    <string name="qu_d_as_quer_s_repetir_esta_tarea1">¿Qué días querés repetir esta tarea?</string>
 </resources>

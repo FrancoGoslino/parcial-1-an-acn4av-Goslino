@@ -51,4 +51,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation("com.google.firebase:firebase-auth")
     implementation 'com.google.firebase:firebase-firestore:24.10.3'
+    implementation 'com.google.android.material:material:1.12.0'
+
  }

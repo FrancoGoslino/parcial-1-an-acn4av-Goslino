@@ -43,7 +43,7 @@ public class RegisterUser extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register_user);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.resgisterUser), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.registerUser), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
