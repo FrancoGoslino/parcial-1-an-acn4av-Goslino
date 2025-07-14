@@ -8,20 +8,23 @@ public class Task {
     private String descripcion;
     private Date fecha;
     private List<String> diasRepeticion;
-
+    private String id;
 
     public Task() {
-        // Constructor vacío necesario para Firestore
+        // Constructor vacío requerido por Firestore
     }
 
-
-    public Task (String titulo,String descripcion,Date fecha, List<String> diasRepeticion){
-        this.titulo=titulo;
-        this.descripcion=descripcion;
-        this.fecha=fecha;
+    public Task(String titulo, String descripcion, Date fecha, List<String> diasRepeticion) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
         this.diasRepeticion = diasRepeticion;
     }
-    // Getters y setters
+
+
+    // Getter y setter
+    public void setId(String id) { this.id = id; }
+    public String getId() { return id; }
     public String getTitulo() { return titulo; }
     public String getDescripcion() { return descripcion; }
     public Date getFecha() { return fecha; }

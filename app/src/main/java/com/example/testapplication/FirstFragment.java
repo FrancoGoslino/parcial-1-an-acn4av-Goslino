@@ -94,18 +94,23 @@ public class FirstFragment extends Fragment {
 
         cargarTareasDesdeFirestore(); // Cargar tareas desde Firestore
 
-        // Escuchar el resultado de AddTaskFragment
-        getParentFragmentManager().setFragmentResultListener("nuevaTarea", this, (requestKey, bundle) -> {
-            String titulo = bundle.getString("titulo");
-            String descripcion = bundle.getString("descripcion");
-            long fechaMillis = bundle.getLong("fechaMillis");
+        // Escuchar  resultado de AddTaskFragment
+        getParentFragmentManager().setFragmentResultListener(
+                "nuevaTarea", this, (requestKey, bundle) -> {
+                    String id = bundle.getString("id");
+                    String tit = bundle.getString("titulo");
+                    String desc = bundle.getString("descripcion");
+                    long fMillis = bundle.getLong("fechaMillis");
+                    Date fecha = new Date(fMillis);
+                    ArrayList<String> dias = bundle.getStringArrayList("dias");
 
-            Date fecha = new Date(fechaMillis);
+                    Task nueva = new Task(tit, desc, fecha, dias);
+                    nueva.setId(id);
+                    taskList.add(nueva);
+                    adapter.notifyItemInserted(taskList.size() - 1);
+                }
+        );
 
-            ArrayList<String> dias = bundle.getStringArrayList("dias");
-            taskList.add(new Task(titulo, descripcion, fecha, dias));
-            adapter.notifyItemInserted(taskList.size() - 1);
-        });
 
         // Botón para agregar tarea
         Button addTaskButton = view.findViewById(R.id.addTaskButton);
@@ -118,6 +123,7 @@ public class FirstFragment extends Fragment {
                 transaction.commit();
             }
         });
+        cargarTareasDesdeFirestore();
     }
 
     // cargar tareas desde Firestore
@@ -138,6 +144,7 @@ public class FirstFragment extends Fragment {
                     taskList.clear();
                     for (DocumentSnapshot doc : snapshot) {
                         Task tarea = doc.toObject(Task.class);
+                        tarea.setId(doc.getId());
                         taskList.add(tarea);
                     }
                     adapter.notifyDataSetChanged();
