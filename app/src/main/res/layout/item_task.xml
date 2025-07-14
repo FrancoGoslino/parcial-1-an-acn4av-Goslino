@@ -20,6 +20,7 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
+
         <TextView
             android:id="@+id/descripcionTarea"
             android:layout_width="match_parent"
@@ -36,5 +37,11 @@
             android:textColor="@color/TextCardTask"
             android:textSize="14sp" />
 
-
+        <TextView
+            android:id="@+id/diasTarea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#555555"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp"/>
 </LinearLayout>

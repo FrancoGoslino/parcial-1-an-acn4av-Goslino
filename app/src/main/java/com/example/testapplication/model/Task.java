@@ -1,35 +1,36 @@
 package com.example.testapplication.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Task {
     private String titulo;
     private String descripcion;
     private Date fecha;
+    private List<String> diasRepeticion;
 
 
+    public Task() {
+        // Constructor vacío necesario para Firestore
+    }
 
-    public Task (String titulo,String descripcion,Date fecha){
+
+    public Task (String titulo,String descripcion,Date fecha, List<String> diasRepeticion){
         this.titulo=titulo;
         this.descripcion=descripcion;
         this.fecha=fecha;
+        this.diasRepeticion = diasRepeticion;
     }
-    //GETTERS Y SETTERS
-    public void setTitulo(String titulo){
-        this.titulo=titulo;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    public String gettitulo(){
-        return titulo;
-    }
-    public String getDescripcion(){
-        return descripcion;
-    }
-    public Date getFecha(){
-        return fecha;
-    }
+    // Getters y setters
+    public String getTitulo() { return titulo; }
+    public String getDescripcion() { return descripcion; }
+    public Date getFecha() { return fecha; }
+    public List<String> getDiasRepeticion() { return diasRepeticion; }
 
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public void setFecha(Date fecha) { this.fecha = fecha; }
+    public void setDiasRepeticion(List<String> diasRepeticion) { this.diasRepeticion = diasRepeticion; }
 }
+
 

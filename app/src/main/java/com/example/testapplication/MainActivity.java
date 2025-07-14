@@ -85,5 +85,6 @@ public class MainActivity extends AppCompatActivity {
     public void Onclick_Register(View view){
         Intent intent = new Intent(this, RegisterUser.class);
         startActivity(intent);
+        finish();
     }
 }

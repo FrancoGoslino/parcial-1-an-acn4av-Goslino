@@ -25,12 +25,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         TextView tituloText;
         TextView descripcionText;
         TextView fechaText;
+        TextView diasText;
 
         public TaskViewHolder(View itemView) {
             super(itemView);
             tituloText = itemView.findViewById(R.id.tituloTarea);
             descripcionText = itemView.findViewById(R.id.descripcionTarea);
             fechaText = itemView.findViewById(R.id.fechaTarea);
+            diasText = itemView.findViewById(R.id.diasTarea);
+
+            if (diasText == null) {
+                throw new RuntimeException("ERROR: No se pudo encontrar diasTarea en el layout.");
+            }
         }
     }
 
@@ -43,9 +49,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(TaskViewHolder holder, int position) {
         Task task = taskList.get(position);
-        holder.tituloText.setText(task.gettitulo());
+
+        holder.tituloText.setText(task.getTitulo());
         holder.descripcionText.setText(task.getDescripcion());
         holder.fechaText.setText(dateFormat.format(task.getFecha()));
+
+        List<String> dias = task.getDiasRepeticion();
+        if (dias != null && !dias.isEmpty()) {
+            String diasStr = "Se repite: " + String.join(", ", dias);
+            holder.diasText.setText(diasStr);
+        } else {
+            holder.diasText.setText("Sin repetición");
+        }
     }
 
     @Override

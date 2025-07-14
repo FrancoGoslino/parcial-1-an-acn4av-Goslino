@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,11 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.testapplication.model.Task;
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,8 +47,6 @@ public class FirstFragment extends Fragment {
 
     public FirstFragment() {
         // Required empty public constructor
-
-
     }
 
     /**
@@ -85,26 +88,13 @@ public class FirstFragment extends Fragment {
         taskList = new ArrayList<>();
         adapter = new TaskAdapter(taskList);
 
-
         RecyclerView recyclerView = view.findViewById(R.id.taskRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
-        //  tarea de prueba
-        taskList.add(new Task("Tarea de prueba", "Esto es solo un ejemplo", new Date()));
-        adapter.notifyItemInserted(taskList.size() - 1);
-        taskList.add(new Task("Tarea de prueba 3", "Esto es solo un ejemplo", new Date()));
-        adapter.notifyItemInserted(taskList.size() - 1);
-        taskList.add(new Task("Tarea de prueba 3", "Esto es solo un ejemplo", new Date()));
-        adapter.notifyItemInserted(taskList.size() - 1);
-        taskList.add(new Task("Tarea de prueba 4", "Esto es solo un ejemplo", new Date()));
-        adapter.notifyItemInserted(taskList.size() - 1);
-        taskList.add(new Task("Tarea de prueba 5", "Esto es solo un ejemplo", new Date()));
-        adapter.notifyItemInserted(taskList.size() - 1);
+        cargarTareasDesdeFirestore(); // Cargar tareas desde Firestore
 
-
-
-        // Tomar resultado de AddTaskFragment
+        // Escuchar el resultado de AddTaskFragment
         getParentFragmentManager().setFragmentResultListener("nuevaTarea", this, (requestKey, bundle) -> {
             String titulo = bundle.getString("titulo");
             String descripcion = bundle.getString("descripcion");
@@ -112,7 +102,8 @@ public class FirstFragment extends Fragment {
 
             Date fecha = new Date(fechaMillis);
 
-            taskList.add(new Task(titulo, descripcion, fecha));
+            ArrayList<String> dias = bundle.getStringArrayList("dias");
+            taskList.add(new Task(titulo, descripcion, fecha, dias));
             adapter.notifyItemInserted(taskList.size() - 1);
         });
 
@@ -129,5 +120,30 @@ public class FirstFragment extends Fragment {
         });
     }
 
+    // cargar tareas desde Firestore
+    private void cargarTareasDesdeFirestore() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Log.e("Login", "Usuario no autenticado");
+            return;
+        }
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("usuarios")
+                .document(user.getUid())
+                .collection("tareas")
+                .orderBy("timestamp", Query.Direction.ASCENDING)
+                .get()
+                .addOnSuccessListener(snapshot -> {
+                    taskList.clear();
+                    for (DocumentSnapshot doc : snapshot) {
+                        Task tarea = doc.toObject(Task.class);
+                        taskList.add(tarea);
+                    }
+                    adapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("FirstFragment", "Error al obtener tareas", e);
+                });
+    }
 }

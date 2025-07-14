@@ -6,17 +6,29 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,8 +70,6 @@ public class AddTaskFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-
-
     }
 
     @Override
@@ -79,14 +89,70 @@ public class AddTaskFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         inputTitulo = view.findViewById(R.id.inputTitulo);
         inputDescripcion = view.findViewById(R.id.inputDescripcion);
         fechaSeleccionadaText = view.findViewById(R.id.fechaSeleccionadaText);
+        CheckBox checkLunes = view.findViewById(R.id.checkLunes);
+        CheckBox checkMartes = view.findViewById(R.id.checkMartes);
+        CheckBox checkMiercoles = view.findViewById(R.id.checkMiercoles);
+        CheckBox checkJueves = view.findViewById(R.id.checkJueves);
+        CheckBox checkViernes = view.findViewById(R.id.checkViernes);
+        CheckBox checkSabado = view.findViewById(R.id.checkSabado);
+        CheckBox checkDomingo = view.findViewById(R.id.checkDomingo);
         Button fechaButton = view.findViewById(R.id.selectFechaButton);
         Button guardarButton = view.findViewById(R.id.guardarTareaButton);
 
+        // botón de guardar
+        guardarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("AddTaskFragment", "Botón GUARDAR fue presionado");
+                String titulo = inputTitulo.getText().toString().trim();
+                String descripcion = inputDescripcion.getText().toString().trim();
 
+                if (titulo.isEmpty() || descripcion.isEmpty() || fechaSeleccionada == null) {
+                    Toast.makeText(getContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                List<String> diasSeleccionados = new ArrayList<>();
+                if (checkLunes.isChecked()) diasSeleccionados.add("Lunes");
+                if (checkMartes.isChecked()) diasSeleccionados.add("Martes");
+                if (checkMiercoles.isChecked()) diasSeleccionados.add("Miércoles");
+                if (checkJueves.isChecked()) diasSeleccionados.add("Jueves");
+                if (checkViernes.isChecked()) diasSeleccionados.add("Viernes");
+                if (checkSabado.isChecked()) diasSeleccionados.add("Sábado");
+                if (checkDomingo.isChecked()) diasSeleccionados.add("Domingo");
+
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (currentUser != null) {
+                    String uid = currentUser.getUid();
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                    Map<String, Object> tarea = new HashMap<>();
+                    tarea.put("titulo", titulo);
+                    tarea.put("descripcion", descripcion);
+                    tarea.put("fecha", fechaSeleccionada);
+                    tarea.put("diasRepeticion", diasSeleccionados);
+                    tarea.put("timestamp", FieldValue.serverTimestamp());
+
+                    db.collection("usuarios")
+                            .document(uid)
+                            .collection("tareas")
+                            .add(tarea)
+                            .addOnSuccessListener(documentReference -> {
+                                Toast.makeText(getContext(), "Tarea guardada con éxito", Toast.LENGTH_SHORT).show();
+                                irAFirstFragment();
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(getContext(), "Error al guardar tarea", Toast.LENGTH_SHORT).show();
+                            });
+                }
+            }
+        });
+
+        // botón seleccionar fecha
         fechaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,28 +170,11 @@ public class AddTaskFragment extends Fragment {
                 datePicker.show();
             }
         });
-
-
-        guardarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String titulo = inputTitulo.getText().toString().trim();
-                String descripcion = inputDescripcion.getText().toString().trim();
-
-                if (titulo.isEmpty() || descripcion.isEmpty() || fechaSeleccionada == null) {
-                    Toast.makeText(getContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                Bundle resultado = new Bundle();
-                resultado.putString("titulo", titulo);
-                resultado.putString("descripcion", descripcion);
-                resultado.putLong("fechaMillis", fechaSeleccionada.getTime());
-
-                getParentFragmentManager().setFragmentResult("nuevaTarea", resultado);
-                requireActivity().onBackPressed(); // Vuelve al fragment anterior
-            }
-        });
     }
 
+    private void irAFirstFragment() {
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.firstFragment, new FirstFragment());
+        transaction.commit();
+    }
 }
