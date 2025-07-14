@@ -1,47 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardTask"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp"
-    android:layout_margin="10dp"
     android:background="@color/cardTask"
-    android:gravity="center"
-    android:clipToPadding="false"
+    android:layout_margin="10dp"
+    android:padding="12dp"
+    android:clipToPadding="false">
 
-    >
+    <!-- Información -->
+    <TextView
+        android:id="@+id/tituloTarea"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/t_tulo"
+        android:textColor="@color/TextCardTask"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/tituloTarea"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/t_tulo"
-            android:textColor="@color/TextCardTask"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/descripcionTarea"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/descripci_n"
+        android:textColor="@color/TextCardTask"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/tituloTarea"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="6dp" />
 
+    <TextView
+        android:id="@+id/fechaTarea"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/fecha"
+        android:textColor="@color/TextCardTask"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/descripcionTarea"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp" />
 
-        <TextView
-            android:id="@+id/descripcionTarea"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/descripci_n"
-            android:textColor="@color/TextCardTask"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/diasTarea"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Se repite: Lunes, Miércoles"
+        android:textColor="@color/TextCardTask"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/fechaTarea"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"/>
 
-        <TextView
-            android:id="@+id/fechaTarea"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fecha"
-            android:textColor="@color/TextCardTask"
-            android:textSize="14sp" />
+    <!-- Botón editar -->
+    <ImageButton
+        android:id="@+id/editarButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/baseline_edit_24"
+        android:contentDescription="Editar"
+        app:tint="@color/TextCardTask"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/eliminarButton"
+        android:layout_marginEnd="8dp"/>
 
-        <TextView
-            android:id="@+id/diasTarea"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#555555"
-            android:textSize="12sp"
-            android:layout_marginTop="4dp"/>
-</LinearLayout>
+    <!-- Botón eliminar -->
+    <ImageButton
+        android:id="@+id/eliminarButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/baseline_delete_24"
+        android:contentDescription="Eliminar"
+        app:tint="@color/error"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
