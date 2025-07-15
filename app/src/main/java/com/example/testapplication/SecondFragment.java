@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class SecondFragment extends Fragment {
 
@@ -36,15 +37,24 @@ public class SecondFragment extends Fragment {
                              android.view.ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_second, container, false);
+
+
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         calendarView = view.findViewById(R.id.calendarView);
         emocionText  = view.findViewById(R.id.emocionText);
+        TextView quoteText = view.findViewById(R.id.quoteText);
 
         db   = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
+
+        String[] quotes = getResources().getStringArray(R.array.daily_quotes);
+        String randomQuote = quotes[new Random().nextInt(quotes.length)];
+        quoteText.setText(randomQuote);
+
+
 
         if (user == null) {
             Toast.makeText(getContext(), "Usuario no autenticado", Toast.LENGTH_SHORT).show();
@@ -56,7 +66,11 @@ public class SecondFragment extends Fragment {
             String fechaStr = String.format("%02d-%02d-%04d", day, month + 1, year);
             emocionText.setText("📅 Día seleccionado: " + fechaStr);
             mostrarDialogoEmocional(fechaStr);
+
+
         });
+
+
     }
 
     private void mostrarDialogoEmocional(String fechaStr) {

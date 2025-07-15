@@ -52,6 +52,22 @@
                     android:textSize="16sp"
                     android:textColor="@color/cardTask"
                     android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/streakText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Racha: 0 días"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"/>
+
+                <TextView
+                    android:id="@+id/quoteText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/TextCardTask"
+                    android:layout_marginBottom="8dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
