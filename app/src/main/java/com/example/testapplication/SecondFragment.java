@@ -1,64 +1,120 @@
 package com.example.testapplication;
 
+import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.CalendarView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.*;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SecondFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 public class SecondFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private CalendarView calendarView;
+    private TextView emocionText;
+    private FirebaseFirestore db;
+    private FirebaseUser user;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private final SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
 
-    public SecondFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SecondFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SecondFragment newInstance(String param1, String param2) {
-        SecondFragment fragment = new SecondFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(android.view.LayoutInflater inflater,
+                             android.view.ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_second, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        calendarView = view.findViewById(R.id.calendarView);
+        emocionText  = view.findViewById(R.id.emocionText);
+
+        db   = FirebaseFirestore.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user == null) {
+            Toast.makeText(getContext(), "Usuario no autenticado", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Día tocado
+        calendarView.setOnDateChangeListener((cv, year, month, day) -> {
+            String fechaStr = String.format("%02d-%02d-%04d", day, month + 1, year);
+            emocionText.setText("📅 Día seleccionado: " + fechaStr);
+            mostrarDialogoEmocional(fechaStr);
+        });
+    }
+
+    private void mostrarDialogoEmocional(String fechaStr) {
+        String[] emociones = {"Muy bueno", "Bueno", "Regular", "Malo", "Muy malo"};
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("¿Cómo te sentiste ese día?")
+                .setSingleChoiceItems(emociones, -1, (dialog, which) -> {
+                    String emocionSeleccionada = emociones[which];
+                    guardarEmocion(fechaStr, emocionSeleccionada);
+                    emocionText.setText("📅 " + fechaStr + " — " + emocionSeleccionada);
+                    dialog.dismiss();
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
+    private void guardarEmocion(String fechaStr, String emocion) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("emocion", emocion);
+        data.put("timestamp", FieldValue.serverTimestamp());
+
+        db.collection("usuarios")
+                .document(user.getUid())
+                .collection("emociones")
+                .document(fechaStr)
+                .set(data)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(getContext(), "Emoción guardada", Toast.LENGTH_SHORT).show();
+                    pintarColorDelDia(fechaStr, emocion);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Error al guardar emoción", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    private void pintarColorDelDia(String fechaStr, String emocion) {
+        Date date;
+        try {
+            date = formatoFecha.parse(fechaStr);
+        } catch (Exception e) {
+            return;
+        }
+
+        long millis = date.getTime();
+        int color = obtenerColorPorEmocion(emocion);
+        calendarView.setDate(millis, false, true);
+        calendarView.setBackgroundColor(color);
+    }
+
+    private int obtenerColorPorEmocion(String emocion) {
+        switch (emocion) {
+            case "Muy bueno": return Color.parseColor("#4CAF50"); // verde
+            case "Bueno":     return Color.parseColor("#FFEB3B"); // amarillo
+            case "Regular":   return Color.parseColor("#BDBDBD"); // gris
+            case "Malo":      return Color.parseColor("#FF9800"); // naranja
+            case "Muy malo":  return Color.parseColor("#F44336"); // rojo
+            default:          return Color.WHITE;
+        }
     }
 }
