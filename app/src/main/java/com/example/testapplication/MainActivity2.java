@@ -61,7 +61,6 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
-    // Método para reemplazar el Fragment en el contenedor
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

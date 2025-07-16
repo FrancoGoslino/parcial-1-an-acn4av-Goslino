@@ -1,46 +1,136 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="@android:color/white">
 
-    <EditText
-        android:id="@+id/inputTitulo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/t_tulo_de_la_tarea" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/inputDescripcion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/descripcion" />
+        <TextView
+            android:id="@+id/tituloPantalla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/crear_nueva_tarea"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/navbar"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
 
-    <Button
-        android:id="@+id/selectFechaButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/seleccionar_fecha_l_mite"
-        android:backgroundTint="@color/verde_app"
-        />
+        <TextView
+            android:id="@+id/descripPantalla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Completá los detalles de tu tarea. Podés asignar días específicos y una fecha límite."
+            android:textSize="14sp"
+            android:textColor="#777777"
+            android:gravity="center"
+            android:layout_marginBottom="12dp"/>
 
-    <TextView
-        android:id="@+id/fechaSeleccionadaText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fecha no seleccionada"
-        android:textColor="#888888"
-        android:paddingTop="8dp"
+        <!-- Título -->
+        <EditText
+            android:id="@+id/inputTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/t_tulo_de_la_tareaº"
+            android:backgroundTint="@color/navbar"
+            android:textColorHint="#888888"
+            android:drawableStart="@drawable/baseline_edit_24" />
 
-        />
+        <!-- Descripción -->
+        <EditText
+            android:id="@+id/inputDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/descripci_n1"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/navbar"
+            android:textColorHint="#888888"
+            android:drawableStart="@drawable/baseline_notes_24" />
 
-    <Button
-        android:id="@+id/guardarTareaButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Guardar tarea"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/verde_app"
-        />
+        <!-- Botón fecha límite -->
+        <Button
+            android:id="@+id/selectFechaButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/navbar"
+            android:text="@string/seleccionar_fecha_l_mite1"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:drawableStart="@drawable/baseline_event_24"
+            android:drawablePadding="12dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:elevation="4dp"
+            android:gravity="center_vertical" />
 
-</LinearLayout>
+        <!-- Fecha seleccionada -->
+        <TextView
+            android:id="@+id/fechaSeleccionadaText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fecha_no_seleccionada1"
+            android:textColor="#888888"
+            android:paddingTop="8dp"
+            android:textStyle="italic" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"/>
+        <!-- Selección de días -->
+        <TextView
+            android:id="@+id/diasTextLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/qu_d_as_quer_s_repetir_esta_tarea1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/navbar"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp" />
+
+        <GridLayout
+            android:id="@+id/gridDiasSemana"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="3"
+            android:alignmentMode="alignMargins"
+            android:padding="4dp"
+            android:rowOrderPreserved="false">
+
+            <CheckBox android:id="@+id/checkLunes" android:text="Lunes" />
+            <CheckBox android:id="@+id/checkMartes" android:text="Martes" />
+            <CheckBox android:id="@+id/checkMiercoles" android:text="Miércoles" />
+            <CheckBox android:id="@+id/checkJueves" android:text="Jueves" />
+            <CheckBox android:id="@+id/checkViernes" android:text="Viernes" />
+            <CheckBox android:id="@+id/checkSabado" android:text="Sábado" />
+            <CheckBox android:id="@+id/checkDomingo" android:text="Domingo" />
+        </GridLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"/>
+        <!-- Botón guardar tarea -->
+        <Button
+            android:id="@+id/guardarTareaButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guardar_tarea"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/verde_app"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:ignore="OnClick" />
+    </LinearLayout>
+</ScrollView>

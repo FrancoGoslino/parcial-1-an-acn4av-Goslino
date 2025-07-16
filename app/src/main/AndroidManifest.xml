@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TestApplication"
         tools:targetApi="31">
         <activity
+            android:name=".RegisterUser"
+            android:exported="false" />
+        <activity
             android:name=".AgregarTarea"
             android:exported="false" />
         <activity

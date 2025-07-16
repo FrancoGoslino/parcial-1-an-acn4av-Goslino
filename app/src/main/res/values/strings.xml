@@ -108,4 +108,24 @@
     <string name="t_tulo_de_la_tarea">Título de la tarea</string>
     <string name="seleccionar_fecha_l_mite">Seleccionar fecha límite</string>
     <string name="descripcion">Descripción</string>
+    <string name="volver_atr_s">Volver atrás</string>
+    <string name="registrate_gratis_ya">¡REGISTRATE GRATIS YA!</string>
+    <string name="user_name">User name</string>
+    <string name="guardar_tarea">Guardar tarea</string>
+    <string name="repetir_los_d_as">Repetir los días:</string>
+    <string name="crear_nueva_tarea">📝 Crear nueva tarea</string>
+    <string name="t_tulo_de_la_tareaº">Título de la tarea</string>
+    <string name="descripci_n1">Descripción</string>
+    <string name="seleccionar_fecha_l_mite1">📅 Seleccionar fecha límite</string>
+    <string name="fecha_no_seleccionada1">Fecha no seleccionada</string>
+    <string name="qu_d_as_quer_s_repetir_esta_tarea1">¿Qué días querés repetir esta tarea?</string><string-array name="daily_quotes">
+        <item>“El éxito es la suma de pequeños esfuerzos repetidos día tras día.”</item>
+        <item>“Haz hoy lo que otros no hacen, para lograr mañana lo que otros no pueden.”</item>
+        <item>“La disciplina es el puente entre tus metas y tus logros.”</item>
+        <item>“La disciplina es el puente entre tus metas y tus logros.”</item>
+        <item>“Cada paso, por pequeño que sea, te acerca a tu meta.”</item>
+        <item>“No busques el momento perfecto, haz perfecto el momento.”</item>
+        <item>“La disciplina de hoy es la libertad de mañana.”</item>
+    </string-array>
+
 </resources>

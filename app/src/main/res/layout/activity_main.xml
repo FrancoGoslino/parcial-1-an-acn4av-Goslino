@@ -1,150 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
+    android:background="@android:color/white"
+    android:padding="24dp">
 
-    <ImageView
-        android:id="@+id/img_app"
-        android:layout_width="163dp"
-        android:layout_height="122dp"
-        android:contentDescription="@string/logo_de_la_app"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_app" />
+    <!-- 🧠 Título principal -->
 
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="346dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="Autofill,MissingConstraints"
-        android:drawablePadding="20dp"
-        android:drawableStart="@drawable/baseline_person_24"
-        />
 
-    <Button
-        android:id="@+id/button2"
-        android:onClick="funcionDeshabilitada"
-        android:layout_width="match_parent"
+    <!-- 💳 CardView con logo y campos -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardLogin"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="#2677D9"
-        android:text="@string/register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_login"
-        tools:ignore="VisualLintButtonSize" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText"
-        tools:ignore="VisualLintTextFieldSize"
-        android:drawableStart="@drawable/baseline_info_24"
-        android:drawableEnd="@drawable/baseline_remove_red_eye_24"
-        android:drawablePadding="20dp"
+        tools:ignore="MissingConstraints,NotSibling">
 
-        />
 
-    <Button
-        android:id="@+id/button_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="#00C182"
-        android:onClick="Onclick_Login"
-        android:text="@string/log_in"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        tools:ignore="VisualLintButtonSize" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/registroTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔓 Iniciar sesión"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="@color/navbar"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="32dp"/>
+
+            <ImageView
+                android:id="@+id/logoApp"
+                android:layout_width="134dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="Logo de la aplicación"
+                android:src="@drawable/logo_app" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo electrónico"
+                app:startIconDrawable="@drawable/ic_email"
+                app:startIconTint="@color/navbar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextEmailLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="52dp"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:layout_marginTop="16dp"
+                app:startIconDrawable="@drawable/ic_lock"
+                app:startIconTint="@color/navbar"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/navbar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPasswordLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:paddingStart="52dp"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_login"
+                android:onClick="Onclick_Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Iniciar sesión"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/verde_app"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:padding="12dp"
+                android:elevation="4dp" />
+
+            <Button
+                android:id="@+id/button2"
+                android:onClick="Onclick_Register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrarse"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#2677D9"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
+                android:padding="12dp" />
+
+            <TextView
+                android:id="@+id/loginWithLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="O iniciá sesión con"
+                android:textColor="#777777"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/button2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/redesLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/loginWithLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/logo_google"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="Google"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/logo_google" />
+
+                <ImageView
+                    android:id="@+id/logo_x"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="X (Twitter)"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/logo_twitter" />
+
+                <ImageView
+                    android:id="@+id/logfacebook"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:contentDescription="Facebook"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/logo_facebook" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/footerText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/or_login_with"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:text="© 2025 Franco Goslino. Todos los derechos reservados."
+        android:textColor="#AAAAAA"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-        <ImageView
-            android:id="@+id/logo_google"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="@string/logo_de_inicio_sesion_google"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/logo_google" />
-
-        <ImageView
-            android:id="@+id/logo_x"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/twitter"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/logo_twitter" />
-
-        <ImageView
-            android:id="@+id/logfacebook"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="0dp"
-            android:contentDescription="@string/facebook"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/logo_facebook" />
-
-    </LinearLayout>
-
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

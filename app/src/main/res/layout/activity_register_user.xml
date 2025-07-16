@@ -1,0 +1,159 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/registerUser"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="24dp"
+    android:fillViewport="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- 🧠 Título -->
+        <TextView
+            android:id="@+id/registroTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔐 Crear cuenta"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/navbar"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="32dp"/>
+
+        <!-- 📸 Logo -->
+        <ImageView
+            android:id="@+id/logoApp"
+            android:layout_width="134dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Logo de la aplicación"
+            android:src="@drawable/logo_app" />
+
+        <!-- 🧩 Frase motivacional -->
+        <TextView
+            android:id="@+id/fraseBienvenida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Organizá tu tiempo, construí tu enfoque"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 💳 Formulario en CardView -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- 👤 Usuario -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre de usuario"
+                    app:startIconDrawable="@drawable/baseline_person_24"
+                    app:startIconTint="@color/navbar">
+
+                    <com.google.android.material.textfield.TextInputEditText
+
+                        android:id="@+id/editTextUserRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="52dp"
+                       />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- ✉️ Email -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Correo electrónico"
+                    android:layout_marginTop="12dp"
+                    app:startIconDrawable="@drawable/ic_email"
+                    app:startIconTint="@color/navbar">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextEmailRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="52dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- 🔒 Contraseña + Toggle 👁️ -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contraseña"
+                    android:layout_marginTop="12dp"
+                    app:startIconDrawable="@drawable/ic_lock"
+                    app:startIconTint="@color/navbar"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/navbar">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextPasswordRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:paddingStart="52dp"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- ✅ Botón registrar -->
+                <Button
+                    android:id="@+id/registroButton"
+                    android:onClick="ResgitroApp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Crear cuenta"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/verde_app"
+                    android:textStyle="bold"
+                    android:layout_marginTop="24dp"
+                    android:padding="12dp"
+                    android:elevation="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- 🔄 Enlace a login -->
+        <TextView
+            android:id="@+id/textIrALogin"
+            android:onClick="OnClick_VolverAtras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Ya tenés cuenta? Iniciar sesión"
+            android:textColor="@color/navbar"
+            android:textStyle="italic"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- ⚖️ Footer legal -->
+        <TextView
+            android:id="@+id/footerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:gravity="center"
+            android:text="© 2025 Franco Goslino. Todos los derechos reservados."
+            android:textColor="#AAAAAA"
+            android:textSize="12sp" />
+    </LinearLayout>
+</ScrollView>
